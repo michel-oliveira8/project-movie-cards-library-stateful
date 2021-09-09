@@ -73,6 +73,17 @@ class AddMovie extends React.Component {
               id="storyline"
             />
           </label>
+          <label htmlFor="rating" data-testid="rating-input-label">
+            Avaliação
+            <input
+              data-testid="rating-input"
+              value={ rating }
+              onChange={ this.onClick }
+              type="number"
+              name="rating"
+              id="rating"
+            />
+          </label>
         </form>
       </div>
     );
