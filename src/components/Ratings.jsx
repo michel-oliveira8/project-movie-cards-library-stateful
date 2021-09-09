@@ -15,6 +15,8 @@ class Ratings extends Component {
           type="number"
           name="rating"
           id="rating"
+          min="0"
+          max="10"
         />
       </label>
     );
@@ -23,7 +25,7 @@ class Ratings extends Component {
 
 Ratings.propTypes = {
   onClick: PropTypes.func.isRequired,
-  value: PropTypes.number.isRequired,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
 };
 
 export default Ratings;
