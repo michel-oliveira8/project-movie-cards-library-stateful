@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Title from './Title';
 import Subtitle from './Subtitle';
 import Image from './Image';
@@ -8,8 +9,8 @@ import Genre from './Genre';
 
 // Crie um componente chamado `<AddMovie />`
 class AddMovie extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       subtitle: '',
@@ -20,12 +21,29 @@ class AddMovie extends React.Component {
       genre: 'action',
     };
 
-    this.onClick = this.onClick.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
-  onClick(event) {
+  handleSubmit(event) {
+    event.preventDefault();
+    const { onClick } = this.props;
+    onClick(this.state);
+
     this.setState({
-      [event.target.name]: event.target.value,
+      subtitle: '',
+      title: '',
+      imagePath: '',
+      storyline: '',
+      rating: 0,
+      genre: 'action',
+    });
+  }
+
+  handleChange(event) {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value,
     });
   }
 
@@ -35,16 +53,27 @@ class AddMovie extends React.Component {
       <div>
         {/* Renderize um formulário dentro de `<AddMovie />` */}
         <form data-testid="add-movie-form">
-          <Title value={ title } onClick={ this.onClick } />
-          <Subtitle value={ subtitle } onClick={ this.onClick } />
-          <Image value={ imagePath } onClick={ this.onClick } />
-          <Storyline value={ storyline } onClick={ this.onClick } />
-          <Ratings value={ rating } onClick={ this.onClick } />
-          <Genre value={ genre } onClick={ this.onClick } />
+          <Title value={ title } onChange={ this.handleChange } />
+          <Subtitle value={ subtitle } onChange={ this.handleChange } />
+          <Image value={ imagePath } onChange={ this.handleChange } />
+          <Storyline value={ storyline } onChange={ this.handleChange } />
+          <Ratings value={ rating } onChange={ this.handleChange } />
+          <Genre value={ genre } onChange={ this.handleChange } />
+          <button
+            type="submit"
+            data-testid="send-button"
+            onClick={ this.handleSubmit }
+          >
+            Adicionar filme
+          </button>
         </form>
       </div>
     );
   }
 }
+
+AddMovie.propTypes = {
+  onClick: PropTypes.func.isRequired,
+};
 
 export default AddMovie;
