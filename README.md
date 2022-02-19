@@ -1,3 +1,6 @@
+# Projeto realizado durante curso na Trybe - Módulo de Front-end
+# Data da entrega do projeto 16/09/2021
+
 # Habilidades
 
 Nesse projeto, você será capaz de:
