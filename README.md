@@ -19,6 +19,10 @@ Uma possível implementação dessa biblioteca consta abaixo.
 
 ![image](preview.gif)
 
+### Tecnologias:
+
+  - `HTML, CSS, JavaScript, React`
+
 ## Clone o repositório:
 
   -`git clone git@github.com:michel-oliveira8/project-movie-cards-library-stateful.git`
